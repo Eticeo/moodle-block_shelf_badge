@@ -1,0 +1,60 @@
+.block_shelf_badge .eticeo-infosconnexion-title {
+    width: 100%;
+    color: #20375f;
+    margin-bottom: 20px;
+}
+
+.block_shelf_badge .eticeoDeployBadges {
+    float: right;
+    cursor:pointer;
+}
+
+.block_shelf_badge .eticeoDeployBadges:hover {
+    color: #000;
+}
+
+.block_shelf_badge .eticeo-indicators .temps-total {
+    margin-left: 60px;
+}
+
+.block_shelf_badge .eticeo-infosconnexion-title .icon-title {
+    margin-right: 30px;
+}
+
+.block_shelf_badge .badges li {
+    padding-top: 0;
+}
+
+.block_shelf_badge .eticeo-label.eticeo-sort-by-course .badge-image {
+    height: 50px!important;
+    width: inherit!important;
+}
+
+.block_shelf_badge .eticeo-label.eticeo-sort-by-course .badge-name {
+    display:none;
+}
+
+.block_shelf_badge .eticeo-label.eticeo-sort-by-course .courses-badges {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.block_shelf_badge .eticeo-label.eticeo-sort-by-course .courses-badges li {
+    padding-top: 0px;
+    width: 70px!important;
+}
+
+.block_shelf_badge .eticeo-label.eticeo-sort-by-course .eticeoTitleCourse {
+    margin-right: 30px;
+    width: 300px;
+}
+
+.block_shelf_badge .eticeo-label.eticeo-sort-by-course .eticeoTitleCourse:not(.badges-obtained-number) {
+    font-size: 25px;
+}
+
+.block_shelf_badge .eticeo-label.eticeo-sort-by-course .badges-obtained-number {
+    font-size: 15px!important;
+}
