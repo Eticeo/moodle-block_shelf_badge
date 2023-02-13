@@ -21,12 +21,15 @@
  * @copyright  2021 Eticeo <contact@eticeo.fr>
  * @author     2021 De Chiara Antonella (http://antonella-dechiara.develop4fun.fr/)
  * @author     2021 dec Guevara gabrielle <gabrielle.guevara@eticeo.fr>
+ * @author     2022 aug CARRE Jeremy <jeremy.carre@eticeo.fr>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2021042801;        // The current plugin version (Date: YYYYMMDDXX)
-$plugin->requires  = 2017110800;        // Requires this Moodle version
-$plugin->release   = '1.2';
-$plugin->component = 'block_shelf_badge'; // Full name of the plugin (used for diagnostics)
+$plugin->version = 2022082201;        // The current plugin version (Date: YYYYMMDDXX).
+$plugin->requires = 2020061500;        // Requires at least moodle 3.9.
+$plugin->component = 'block_shelf_badge'; // Full name of the plugin (used for diagnostics).
+
+$plugin->maturity = MATURITY_STABLE;
+$plugin->release = '1.3';

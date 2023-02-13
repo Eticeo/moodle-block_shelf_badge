@@ -21,12 +21,14 @@
  * @copyright  2021 Eticeo <contact@eticeo.fr>
  * @author     2021 De Chiara Antonella (http://antonella-dechiara.develop4fun.fr/)
  * @author     2021 dec Guevara gabrielle <gabrielle.guevara@eticeo.fr>
+ * @author     2022 aug CARRE Jeremy <jeremy.carre@eticeo.fr>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once( '../../config.php' );
-require_once( $CFG->dirroot .'/lib/pagelib.php' );
+require_once('../../config.php');
+require_once($CFG->dirroot . '/lib/pagelib.php');
 // Load libraries.
-require_once($CFG->dirroot.'/course/renderer.php');
+require_once($CFG->dirroot . '/course/renderer.php');
 
 global $DB, $USER, $CFG, $OUTPUT;
+require_login();

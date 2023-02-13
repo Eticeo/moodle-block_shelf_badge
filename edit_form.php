@@ -25,10 +25,19 @@
  */
 class block_shelf_badge_edit_form extends block_edit_form {
 
+    /**
+     * The class form used by blocks/edit.php to edit block instance configuration.
+     *
+     * @param object $mform
+     * @return void
+     * @throws coding_exception
+     */
     protected function specific_definition($mform) {
-        global $CFG, $PAGE;
+        global $CFG;
 
-        $PAGE->requires->css(new moodle_url("https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"), true);
+        // CSS.
+        $this->page->requires->css(new moodle_url("https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"),
+                true);
 
         // Fields for editing HTML block title and contents.
         $mform->addElement('header', 'configheader', get_string('blocksettings', 'block'));
@@ -37,45 +46,52 @@ class block_shelf_badge_edit_form extends block_edit_form {
         $mform->setDefault('config_title', get_string('thetitle', BLOCK_SHELF_BADGE));
         $mform->setType('config_title', PARAM_TEXT);
 
-        // Bullet icon (before the title)
+        // Bullet icon (before the title).
         if (is_file($CFG->dirroot . '/theme/edumy/ccn/font_handler/ccn_font_select.php')) {
-            $ccnFontList = include($CFG->dirroot . '/theme/edumy/ccn/font_handler/ccn_font_select.php');
-            $select = $mform->addElement('select', 'config_bullet_icon', get_string('config_bullet_icon', BLOCK_SHELF_BADGE), $ccnFontList, array('class' => 'ccn_icon_class'));
+            $ccnfontlist = include($CFG->dirroot . '/theme/edumy/ccn/font_handler/ccn_font_select.php');
+            $select = $mform->addElement('select', 'config_bullet_icon', get_string('config_bullet_icon', BLOCK_SHELF_BADGE),
+                    $ccnfontlist, array('class' => 'ccn_icon_class'));
             $select->setSelected(get_string('config_bullet_icon_default', BLOCK_SHELF_BADGE));
         } else {
             $mform->addElement('text', 'config_bullet_icon', get_string('config_bullet_icon', BLOCK_SHELF_BADGE));
             $mform->setDefault('config_bullet_icon', get_string('config_bullet_icon_default', BLOCK_SHELF_BADGE));
             $mform->setType('config_bullet_icon', PARAM_TEXT);
         }
-        $options = range(1,12); // 0 => 1, 1 => 2 ...
-        $options = array_combine($options,$options);// 1 => 1, 2 => 2 ...
+        $options = range(1, 12);
+        $options = array_combine($options, $options);
 
         $mform->addElement('select', 'config_space', get_string('configspace_desc', BLOCK_SHELF_BADGE), $options);
         $mform->setDefault('config_space', 5);
 
-        // sort by course
+        // Sort by course.
         $mform->addElement('selectyesno', 'config_sort_by_courses', get_string('config_sort_by_courses', BLOCK_SHELF_BADGE));
         $mform->setDefault('config_sort_by_courses', 0);
 
-        //display button to deploy/fold up the course
-        $mform->addElement('selectyesno', 'config_deploy_button_available', get_string('config_deploy_button_available', BLOCK_SHELF_BADGE));
+        // Display button to deploy/fold up the course.
+        $mform->addElement('selectyesno', 'config_deploy_button_available',
+                get_string('config_deploy_button_available', BLOCK_SHELF_BADGE));
         $mform->setDefault('config_deploy_button_available', 0);
 
-        // restricted access by role
-        $userRoleList = array(0 => get_string('everybody', BLOCK_SHELF_BADGE));
-        $userRoles = get_all_roles();
-        foreach($userRoles as $role) {
+        // Restricted access by role.
+        $userrolelist = array(0 => get_string('everybody', BLOCK_SHELF_BADGE));
+        $userroles = get_all_roles();
+        foreach ($userroles as $role) {
             if ($role->shortname != '') {
-                $userRoleList[$role->id] = $role->shortname.($role->name != '' ? ' ('.$role->name.')' : '');
+                $userrolelist[$role->id] = $role->shortname . ($role->name != '' ? ' (' . $role->name . ')' : '');
             }
         }
 
-        $select = $mform->addElement('select', 'config_user_role', get_string('config_user_role', BLOCK_SHELF_BADGE), $userRoleList);
+        $select =
+                $mform->addElement('select', 'config_user_role', get_string('config_user_role', BLOCK_SHELF_BADGE), $userrolelist);
         $select->setSelected(0);
         $select->setMultiple(true);
 
+        // JavaScript.
+        $this->page->requires->js(new moodle_url("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"), true);
+        $this->page->requires->js(new moodle_url("https://code.jquery.com/ui/1.13.0/jquery-ui.js"), true);
+        $this->page->requires->js(new moodle_url("https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"), true);
 
-        $PAGE->requires->js(new moodle_url("https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"), true);
-        $PAGE->requires->js("/blocks/shelf_badge/js/edit-form.js", true);
+        $this->page->requires->string_for_js('select_user_role', 'block_shelf_badge');
+        $this->page->requires->js("/blocks/shelf_badge/js/edit-form.js", true);
     }
 }

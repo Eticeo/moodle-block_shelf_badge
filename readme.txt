@@ -5,7 +5,7 @@ shelf_badges module for Moodle
 
 Copyright (C) 2021 Eticeo
 
-Authors: De Chiara Antonella, Guevara gabrielle
+Authors: De Chiara Antonella, Guevara gabrielle, Carre Jeremy
 
 This plugin is a Moodle module - http://moodle.org/
 
@@ -21,8 +21,17 @@ http: www.gnu.org/copyleft/gpl.html
 
 Allows to display the user's badges on a block.
 
-You can 
+This block allows you to see all the badges you have earned.
+By choosing the option "Sort by course? "in the course settings, you can display the badges obtained for each course as well as the number of badges that can be obtained,
+in the form "1/2".
 
+
+==================================================
+                REQUIRES
+==================================================
+
+This plugin use external sources of JS. Some sites will implement thier own CSP policies and could block these form loading.
+It will impact the configuration page but only the display.
 
 ==================================================
                 INSTALLATION
@@ -33,9 +42,4 @@ You can
 3.  Upload the ZIP on the file zone 
 4.  If your target directory is not writable, you will see a warning message.
 5.  On the next screen, you will then see an acknowledgement message stating that you take responsibility for installing the plugin.
-
-==================================================
-               POST INSTALLATION
-==================================================
-
 
