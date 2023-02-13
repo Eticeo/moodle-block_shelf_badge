@@ -36,6 +36,9 @@ $string['configspace_desc'] = "Please select the block width. For example 12 wil
 
 $string['noinfo'] = "No Info";
 
+$string['config_user_role'] = 'Enabled user role';
+$string['everybody']        = 'Everybody';
+
 //CONFIGURATION
 $string['config_bullet_icon']             = 'Icon before title';
 $string['config_sort_by_courses']         = 'Sort by course?';

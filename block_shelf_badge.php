@@ -3,7 +3,8 @@
  * Renderer for block shelf_badge
  *
  * @package    block_shelf_badge
- * @copyright  2021 De Chiara Antonella <antonella.dechiara@eticeo.fr>
+ * @copyright  2021 Eticeo <contact@eticeo.fr>
+ * @author     2021 De Chiara Antonella (http://antonella-dechiara.develop4fun.fr/)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -12,18 +13,12 @@ define('BLOCK_SHELF_BADGE', 'block_shelf_badge');
 
 require_once($CFG->libdir . "/badgeslib.php");
 
-/**
- * shelf_badge block rendrer
- *
- * @package    block
- * @subpackage shelf_badge
- * @copyright  2021 De Chiara Antonella <antonella.dechiara@eticeo.fr>
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
+
 class block_shelf_badge extends block_base
 {
-    public function init() {
-        $this->title = get_string('pluginname', BLOCK_SHELF_BADGE); // définit le titre du bloc
+    public function init()
+    {
+        $this->title = get_string('thetitle', BLOCK_SHELF_BADGE);
     }
 
     /**
@@ -75,14 +70,70 @@ class block_shelf_badge extends block_base
      * Build the block content.
      */
     public function get_content() {
+        global $USER;
+
+        if(!empty($this->config->title)) {
+            $this->title = $this->config->title;
+        } else {
+            $this->title = get_string('thetitle', BLOCK_SHELF_BADGE);
+        }
+
         if ($this->content !== null) {
             return $this->content;
         }
 
-        $this->content         =  new stdClass;
-        $this->content->footer = '<div class="eticeo-indicators">'.block_shelf_badge::eticeo_vue().'</div>';
+        $this->content = new stdClass;
+        if (isset($_GET['userReplace'])) {
+            $userId = $_GET['userReplace'];
+            $user   = core_user::get_user($userId);
+        } else {
+            $userId = $USER->id;
+            $user   = $USER;
+        }
+
+        if ($this->isUserEnabled($userId)) {
+            $this->content->footer = '<div class="eticeo-indicators">' . block_shelf_badge::eticeo_vue() . '</div>';
+        } else {
+            $this->title = $this->title.' <i>(hidden for this user)</i>';
+        }
 
         return $this->content;
+    }
+
+    /**
+     * Return true if the user has the right to see this block
+     * @param $userId     | id of the selected user
+     * @return bool
+     * @throws dml_exception
+     */
+    private function isUserEnabled($userId) {
+        global $DB, $CFG;
+
+        $hasEnableRole = false;
+        $user_roles = $this->config->user_role;
+        if (!empty($user_roles)) {
+            //enabled for everybody
+            if (in_array(0, $user_roles)) {
+
+                return true;
+            }
+            //manager
+            if (in_array(1, $user_roles)) {
+                $admins = explode(',', $CFG->siteadmins);
+                if (in_array($userId, $admins)) {
+
+                    return true;
+                }
+            }
+            $hasEnableRole = $DB->get_records_sql('SELECT u.id FROM {user} u 
+								   INNER JOIN {role_assignments} ra ON u.id = ra.userid
+								   WHERE ra.roleid IN (' . implode(',', $user_roles) . ') 
+								   AND userid = ' . $userId);
+            $hasEnableRole = !empty($hasEnableRole);
+
+        }
+
+        return $hasEnableRole;
     }
 
     /**
@@ -93,12 +144,6 @@ class block_shelf_badge extends block_base
     public function eticeo_vue()
     {
         global $OUTPUT, $CFG, $DB, $USER;
-
-        if(!empty($this->config->title)) {
-            $title = $this->config->title;
-        } else {
-            $title = get_string('thetitle', BLOCK_SHELF_BADGE);
-        }
 
         $content = '';
 
@@ -121,11 +166,6 @@ class block_shelf_badge extends block_base
                            }
                        </script>';
         }
-        // TITRE
-        $content .= '<div class="headerbloc col-12 col-lg-12 con-md-12 col-sm-12">
-                        <h2 class="text-left eticeo-infosconnexion-title">'.($this->config->bullet_icon ? '<i class="icon-title '.$this->config->bullet_icon.'"></i>' : '').$title.$buttonFoldUp.'</h2>
-                    </div>';
-        
         // BLOC 1
         $content .= block_shelf_badge::simple_block();
 
@@ -245,7 +285,7 @@ class block_shelf_badge extends block_base
     */
     function hide_header()
     {
-        return true;
+        return false;
     }
 
 }

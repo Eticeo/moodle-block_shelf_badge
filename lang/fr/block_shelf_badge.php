@@ -36,6 +36,9 @@ $string['configspace_desc'] = "Veuillez selectionner la largeur du bloc. Par exe
 
 $string['noinfo'] = "Aucune Info";
 
+$string['config_user_role'] = 'Rôles pour lesquels ce bloc sera visible';
+$string['everybody']        = 'Tout le monde';
+
 //CONFIGURATION
 $string['config_bullet_icon']             = 'Icone avant le titre (classe font awesome, light awesome, ...)';
 $string['config_sort_by_courses']         = 'Trier par cours ?';
