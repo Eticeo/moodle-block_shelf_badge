@@ -24,11 +24,12 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-// GENERAL
-$string['pluginname'] = 'Etagère des badges';
-$string['thetitle'] = 'Etagère des badges';
-$string['simplehtml:addinstance'] = 'Un simple indicateur des badges de \'utilisateur';
-// VIEW
+// GENERAL.
+$string['pluginname'] = '[Eticeo] Etagère des badges';
+$string['thetitle'] = '[Eticeo] Etagère des badges';
+$string['shelf_badges:addinstance'] = 'Un simple indicateur des badges de \'utilisateur';
+$string['shelf_badges:myaddinstance'] = 'Un simple indicateur des badges de \'utilisateur';
+// VIEW.
 $string['personalview'] = 'Vue personnelle';
 $string['educationalview'] = 'Vue p&eacute;dagogique';
 $string['adminview'] = 'Vue administration';
@@ -41,20 +42,29 @@ $string['totallabeltime'] = 'Temps total';
 $string['hours'] = 'heures';
 $string['minutes'] = 'minutes';
 
-// PARAMS
+$string['hidden_for_user'] = '(caché pour cet utilisateur)';
+
+// PARAMS.
 $string['thetitle_desc'] = "Indiquez le titre du bloc";
 $string['configspace'] = "Largeur du bloc";
-$string['configspace_desc'] = "Veuillez selectionner la largeur du bloc. Par exemple 12 sera toute la largeur et 1 un douxi&egrave;me de la taille de l'&eacute;cran.";
+$string['configspace_desc'] =
+        "Veuillez selectionner la largeur du bloc. Par exemple 12 sera toute la largeur et 1 un douxi&egrave;me de la taille de l'&eacute;cran.";
 
 $string['noinfo'] = "Aucune Info";
 
 $string['config_user_role'] = 'Rôles pour lesquels ce bloc sera visible';
-$string['everybody']        = 'Tout le monde';
+$string['everybody'] = 'Tout le monde';
 
-//CONFIGURATION
-$string['config_bullet_icon']             = 'Icone avant le titre (classe font awesome, light awesome, ...)';
-$string['config_sort_by_courses']         = 'Trier par cours ?';
-$string['config_bullet_icon_default']     = 'fa fa-circle';
-$string['config_deploy_button_available'] = 'Afficher le bouton pour d&eacute;plier/replier le cours ?';
+// CONFIGURATION.
+$string['config_bullet_icon'] = 'Icone avant le titre (classe font awesome, light awesome, ...)';
+$string['config_sort_by_courses'] = 'Trier par cours ?';
+$string['config_bullet_icon_default'] = 'fa fa-circle';
+$string['config_deploy_button_available'] = 'Afficher le bouton pour d&eacute;plier/replier les badges ?';
 
+$string['obtained-badges-number'] = '';
+$string['possibles-badges-number'] = '';
 
+$string['select_user_role'] = 'Select a user role';
+
+// META.
+$string['privacy:metadata'] = 'Le block Etagère des badges affiche seulement des données déjà existantes.';

@@ -22,7 +22,7 @@
  * @author     2021 dec Guevara gabrielle <gabrielle.guevara@eticeo.fr>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
- 
-$(function() {
-    $('[name="config_user_role[]"]').select2({placeholder: "Select a user role"});
+
+$(function () {
+    $('[name="config_user_role[]"]').select2({placeholder: M.util.get_string('select_user_role', 'block_shelf_badge')});
 });

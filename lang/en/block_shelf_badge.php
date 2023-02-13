@@ -24,11 +24,12 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-// GENERAL
-$string['pluginname'] = 'Shelf Badges';
-$string['thetitle'] = 'Shelf Badges';
-$string['simplehtml:addinstance'] = 'A simple indicator of user badges.';
-// VIEW
+// GENERAL.
+$string['pluginname'] = '[Eticeo] Shelf Badges';
+$string['thetitle'] = '[Eticeo] Shelf Badges';
+$string['shelf_badges:addinstance'] = 'Add a simple indicator of user badges.';
+$string['shelf_badges:myaddinstance'] = 'Add a simple indicator of user badges to dashboard.';
+// VIEW.
 $string['personalview'] = 'Personal view';
 $string['educationalview'] = 'Educational view';
 $string['adminview'] = 'Administration view';
@@ -41,18 +42,29 @@ $string['totallabeltime'] = 'Total Time';
 $string['hours'] = 'hours';
 $string['minutes'] = 'minutes';
 
-// PARAMS
+$string['hidden_for_user'] = '(hidden for this user)';
+
+// PARAMS.
 $string['thetitle_desc'] = "Indicate the block title";
 $string['configspace'] = "Block width";
-$string['configspace_desc'] = "Please select the block width. For example 12 will be the full width and 1 one-twelfth the size of the screen.";
+$string['configspace_desc'] =
+        "Please select the block width. For example 12 will be the full width and 1 one-twelfth the size of the screen.";
 
 $string['noinfo'] = "No Info";
 
 $string['config_user_role'] = 'Enabled user role';
-$string['everybody']        = 'Everybody';
+$string['everybody'] = 'Everybody';
 
-//CONFIGURATION
-$string['config_bullet_icon']             = 'Icon before title';
-$string['config_sort_by_courses']         = 'Sort by course?';
-$string['config_bullet_icon_default']     = 'fa fa-circle';
-$string['config_deploy_button_available'] = 'Display the button to unfold/unfold the course?';
+// CONFIGURATION.
+$string['config_bullet_icon'] = 'Icon before title';
+$string['config_sort_by_courses'] = 'Sort by course?';
+$string['config_bullet_icon_default'] = 'fa fa-circle';
+$string['config_deploy_button_available'] = 'Display the button to unfold/unfold the badges?';
+
+$string['obtained-badges-number'] = '';
+$string['possibles-badges-number'] = '';
+
+$string['select_user_role'] = 'Select a user role';
+
+// META.
+$string['privacy:metadata'] = 'The Shelf badge block only displays existing badges.';
