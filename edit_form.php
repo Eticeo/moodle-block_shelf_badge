@@ -15,18 +15,13 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Form for editing Eticeo Indicators block instances.
+ * Block shelf_badge configuration form definition
  *
- * @package   block_shelf_badge
- * @copyright 2021 De Chiara Antonella <antonella.dechiara@eticeo.fr>
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-
-/**
- * Form for editing Blog tags block instances.
- *
- * @copyright 2009 Tim Hunt
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package    block_shelf_badge
+ * @copyright  2021 Eticeo <contact@eticeo.fr>
+ * @author     2021 De Chiara Antonella (http://antonella-dechiara.develop4fun.fr/)
+ * @author     2021 dec Guevara gabrielle <gabrielle.guevara@eticeo.fr>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class block_shelf_badge_edit_form extends block_edit_form {
 
