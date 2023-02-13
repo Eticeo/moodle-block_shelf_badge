@@ -31,7 +31,9 @@
 class block_shelf_badge_edit_form extends block_edit_form {
 
     protected function specific_definition($mform) {
-        global $CFG;
+        global $CFG, $PAGE;
+
+        $PAGE->requires->css(new moodle_url("https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"), true);
 
         // Fields for editing HTML block title and contents.
         $mform->addElement('header', 'configheader', get_string('blocksettings', 'block'));
@@ -64,5 +66,21 @@ class block_shelf_badge_edit_form extends block_edit_form {
         $mform->addElement('selectyesno', 'config_deploy_button_available', get_string('config_deploy_button_available', BLOCK_SHELF_BADGE));
         $mform->setDefault('config_deploy_button_available', 0);
 
+        // restricted access by role
+        $userRoleList = array(0 => get_string('everybody', BLOCK_SHELF_BADGE));
+        $userRoles = get_all_roles();
+        foreach($userRoles as $role) {
+            if ($role->shortname != '') {
+                $userRoleList[$role->id] = $role->shortname.($role->name != '' ? ' ('.$role->name.')' : '');
+            }
+        }
+
+        $select = $mform->addElement('select', 'config_user_role', get_string('config_user_role', BLOCK_SHELF_BADGE), $userRoleList);
+        $select->setSelected(0);
+        $select->setMultiple(true);
+
+
+        $PAGE->requires->js(new moodle_url("https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"), true);
+        $PAGE->requires->js("/blocks/shelf_badge/js/edit-form.js", true);
     }
 }

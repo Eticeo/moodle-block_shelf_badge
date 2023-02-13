@@ -4,6 +4,10 @@
     margin-bottom: 20px;
 }
 
+.block_shelf_badge .content {
+    min-height: 56px;
+}
+
 .block_shelf_badge .eticeoDeployBadges {
     float: right;
     cursor:pointer;
