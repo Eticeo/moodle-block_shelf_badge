@@ -103,6 +103,11 @@ class block_shelf_badge extends block_base {
     public function get_content() {
         global $USER;
 
+        $this->page->requires->string_for_js('select_user_role', 'block_shelf_badge');
+        $this->page->requires->css("/blocks/shelf_badge/css/select2.min.css", true);
+        $this->page->requires->js_call_amd('block_shelf_badge/editform', 'init', [$this->instance->id, true]);
+
+
         if (!empty($this->config->title)) {
             $this->title = $this->config->title;
         } else {
