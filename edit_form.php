@@ -33,11 +33,13 @@ class block_shelf_badge_edit_form extends block_edit_form {
      * @throws coding_exception
      */
     protected function specific_definition($mform) {
-        global $CFG;
+        global $CFG, $PAGE;
 
-        // CSS.
-        $this->page->requires->css(new moodle_url("https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"),
-                true);
+        $this->page->requires->string_for_js('select_user_role', 'block_shelf_badge');
+        // Moodle 4.2 simplification.
+        $PAGE->requires->css("/blocks/eticeo_categories_completion/css/select2.min.css", true);
+        $PAGE->requires->js_call_amd('block_eticeo_categories_completion/editform','init',[$this->block->instance->id, false]);
+
 
         // Fields for editing HTML block title and contents.
         $mform->addElement('header', 'configheader', get_string('blocksettings', 'block'));
@@ -85,13 +87,5 @@ class block_shelf_badge_edit_form extends block_edit_form {
                 $mform->addElement('select', 'config_user_role', get_string('config_user_role', BLOCK_SHELF_BADGE), $userrolelist);
         $select->setSelected(0);
         $select->setMultiple(true);
-
-        // JavaScript.
-        $this->page->requires->js(new moodle_url("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"), true);
-        $this->page->requires->js(new moodle_url("https://code.jquery.com/ui/1.13.0/jquery-ui.js"), true);
-        $this->page->requires->js(new moodle_url("https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"), true);
-
-        $this->page->requires->string_for_js('select_user_role', 'block_shelf_badge');
-        $this->page->requires->js("/blocks/shelf_badge/js/edit-form.js", true);
     }
 }
