@@ -27,9 +27,9 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2023062301;        // The current plugin version (Date: YYYYMMDDXX).
+$plugin->version = 2024121200;        // The current plugin version (Date: YYYYMMDDXX).
 $plugin->requires = 2020061500;        // Requires at least moodle 3.9.
 $plugin->component = 'block_shelf_badge'; // Full name of the plugin (used for diagnostics).
 
 $plugin->maturity = MATURITY_STABLE;
-$plugin->release = '1.4';
+$plugin->release = '1.5';
