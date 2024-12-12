@@ -142,37 +142,42 @@ class block_shelf_badge extends block_base {
 
         $hasenablerole = false;
         $userroles = isset($this->config) ? $this->config->user_role : array();
+
         if (!empty($userroles)) {
             // Enabled for everybody.
             if (in_array(0, $userroles)) {
-
                 return true;
             }
+
             // Manager.
             if (in_array(1, $userroles)) {
                 $admins = explode(',', $CFG->siteadmins);
                 if (in_array($userid, $admins)) {
-
                     return true;
                 }
             }
+
             // Now use placeholder to prevent SQL injection.
-            [$insqluserroles, $param] = $DB->get_in_or_equal($userroles);
+            [$insqluserroles, $params] = $DB->get_in_or_equal($userroles, SQL_PARAMS_NAMED);
 
-            $sql = 'SELECT u.id FROM {user} u
-                   INNER JOIN {role_assignments} ra ON u.id = ra.userid
-                   WHERE ra.roleid ' . $insqluserroles . '
-                   AND userid = :userid';
 
-            $param["userid"] = $userid;
+            $sql = 'SELECT u.id 
+                FROM {user} u
+                INNER JOIN {role_assignments} ra ON u.id = ra.userid
+                WHERE ra.roleid ' . $insqluserroles . ' 
+                AND ra.userid = :userid';
 
-            $hasenablerole = $DB->get_records_sql($sql, $param);
-            $hasenablerole = !empty($hasenablerole);
 
+            $params['userid'] = $userid;
+
+
+            $records = $DB->get_records_sql($sql, $params);
+            $hasenablerole = !empty($records);
         }
 
         return $hasenablerole;
     }
+
 
     /**
      * Subfunction when we can display information
